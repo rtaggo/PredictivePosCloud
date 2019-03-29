@@ -1,7 +1,7 @@
 {
-  "name": "node_passport_login",
+  "name": "Predictive Pos Cloud",
   "version": "2.0.0",
-  "description": "Node.js authentication with Passport",
+  "description": "Predictive PoS in the cloud",
   "main": "app.js",
   "scripts": {
     "start": "node app.js",
