@@ -7,10 +7,7 @@ router.get('/', (req, res) => res.render('welcome'));
 
 // Dashboard
 router.get('/dashboard', ensureAuthenticated, (req, res) =>
-  res.render('dashboard', {
-    user: req.user,
-    token: req.user.generateJwt()
-  })
+  res.render('dashboard', req.user.toAuthJSON())
 );
 
 module.exports = router;
