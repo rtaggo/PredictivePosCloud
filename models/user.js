@@ -1,4 +1,7 @@
+'use strict';
+
 const mongoose = require('mongoose');
+const jwt  = require('jsonwebtoken');
 
 const UserSchema = new mongoose.Schema({
   name: {
@@ -18,6 +21,18 @@ const UserSchema = new mongoose.Schema({
     default: Date.now
   }
 });
+
+UserSchema.methods.generateJwt = function() {
+  var expiry = new Date();
+  expiry.setDate(expiry.getDate() + 7);
+
+  return jwt.sign({
+    _id: this._id,
+    email: this.email,
+    name: this.name,
+    exp: parseInt(expiry.getTime() / 1000),
+  }, "MY_SECRET"); // DO NOT KEEP YOUR SECRET IN THE CODE!
+};
 
 const User = mongoose.model('User', UserSchema);
 
